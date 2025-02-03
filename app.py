@@ -57,6 +57,10 @@ def process_inputs(audio_filepath, image_filepath):
 
 
 # Gradio Interface
+import os
+import gradio as gr
+
+# Gradio Interface
 iface = gr.Interface(
     fn=process_inputs,
     inputs=[
@@ -64,12 +68,19 @@ iface = gr.Interface(
         gr.Image(type="filepath")
     ],
     outputs=[
-        gr.Textbox(label="Your Problem "),
+        gr.Textbox(label="Your Problem"),
         gr.Textbox(label="Doctor's Response"),
         gr.Audio(label="Doctor's Voice")
     ],
-    title="AI Doctor "
+    title="AI Doctor"
 )
+
+# Get the port assigned by Render (default to 7860 if not set)
+port = int(os.environ.get("PORT", 7860))
+
+# Launch Gradio with proper server settings for Render
+iface.launch(server_name="0.0.0.0", server_port=port)
+
 
 # Launch Gradio App
 iface.launch(debug=True)
