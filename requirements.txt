@@ -3,7 +3,7 @@ elevenlabs
 groq
 python-dotenv
 speechrecognition
-pyaudio
+
 numpy
 gTTS
 elevenlabs
